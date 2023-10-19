@@ -10,16 +10,12 @@ import {
 import { ref } from 'vue';
 import { useRouter } from 'vue-router';
 
-import john from '@/assets/john.json'
 import liganma from '@/assets/liganma.json'
 import ClipboardJS from 'clipboard'
 import { message } from 'ant-design-vue';
 import Card from '@/components/Card.vue';
 import List from '@/components/List.vue';
-
-import country from '@/assets/country.json'
-import person from '@/assets/person.json'
-import organization from '@/assets/organization.json'
+import countryList from '@/assets/countryList.json'
 
 
 const [messageApi, contextHolder] = message.useMessage();
@@ -51,8 +47,7 @@ const organizationInfo = ref<Array<{
 const href = window.location.href
 
 const followInfo = {
-  john: john,
-  liganma: liganma,
+  liganma: liganma
 }
 const router = useRouter()
 
@@ -77,21 +72,6 @@ function follow() {
   qrcodeVisible.value = true
 }
 
-const unitInfos= {
-  tongliao:{
-    title: "内蒙古通辽市",
-    sign: "通辽，简写T，通辽宇宙基本面积单位。总面积59535平方千米。截至2022年10月，全市辖1个区、1个县和5个旗，代管1个县级市。"
-  },
-  huilongguang:{
-    title:"北京回龙观社区",
-    sign: "回龙观，通辽宇宙基本人口小单位。回龙观是具有850万平方米的超大规模社区，常驻人口将达到30万人。"
-  },
-  tiantongyuan:{
-    title:"北京天通苑社区",
-    sign: "天通苑，通辽宇宙基本人口大单位。天通苑是亚洲最大社区，人口约50万人。"
-  }
-}
-
 const activeUnit = ref<{
   title?:string,
   sign?:string
@@ -101,42 +81,6 @@ function clickArea(params: any) {
   // 如果data有数据则打开弹窗
   console.log(params)
   
-  let data= params.data
-
-  let name = '';
-  if(data instanceof Array){
-    name = data[0]
-  }else{
-    if(data==undefined){
-      name = params.name
-    }else{
-      name = data?.name
-    }
-    
-  }
-
-  // 通辽，回龙观，天通苑
-  if('通辽' == name){
-    activeUnit.value = unitInfos.tongliao
-    unitInfoVisible.value = true
-  }else if('回龙观' == name){
-    activeUnit.value = unitInfos.huilongguang
-    unitInfoVisible.value = true
-  }else if('天通苑' == name){
-    activeUnit.value = unitInfos.tiantongyuan
-    unitInfoVisible.value = true
-  }else{
-    // 从json筛选数据
-    activeTitle.value = name
-    personInfo.value = []
-    countryInfo.value = []
-    organizationInfo.value = []
-    personInfo.value = person.filter(it=>it.countryName.includes(name))
-    countryInfo.value = country.filter(it=>it.countryName.includes(name))
-    organizationInfo.value = organization.filter(it=>it.countryName.includes(name))
-    aeraInfoVisible.value = true
-  }
-
 }
 
 </script>
@@ -176,11 +120,6 @@ function clickArea(params: any) {
     <div class="models">
       <a-modal v-model:open="qrcodeVisible" title="感谢关注" centered @ok="qrcodeVisible = false">
         <a-row :gutter="[16, 24]" justify="space-around" >
-          <a-col :span="11" justify="space-around" align="middle" class="space-box">
-            
-            <Card :title="followInfo.john.name" :avatar="'image/'+ followInfo.john.avatar" :qrcode="followInfo.john.space" :sign="followInfo.john.sign"></Card>
-
-          </a-col>
           <a-col :span="11" justify="space-around" align="middle" class="space-box">
             <Card :title="followInfo.liganma.name" :avatar="'image/'+ followInfo.liganma.avatar" :qrcode="followInfo.liganma.space" :sign="followInfo.liganma.sign"></Card>
 
