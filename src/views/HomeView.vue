@@ -18,6 +18,7 @@ import List from '@/components/List.vue';
 import countryList from '@/assets/countryList.json'
 
 
+
 const [messageApi, contextHolder] = message.useMessage();
 
 const map = ref()
@@ -27,6 +28,8 @@ const qrcodeVisible = ref<boolean>(false);
 const shareVisible = ref<boolean>(false);
 
 const aeraInfoVisible = ref<boolean>(false);
+
+const aboutVisible = ref<boolean>(false);
 
 const unitInfoVisible = ref<boolean>(false)
 
@@ -158,6 +161,28 @@ function clickArea(params: any) {
       </a-modal>
 
       <a-modal v-model:open="aeraInfoVisible" :title="activeTitle" centered @ok="aeraInfoVisible = false" width="1080px" >
+        <a-row justify="space-around" >
+          <a-col :span="7" justify="space-around" align="middle" class="space-box">
+            
+            <List title="奇葩小国" :list="countryInfo"></List>
+
+          </a-col>
+
+          <a-col :span="7" justify="space-around" align="middle" class="space-box">
+            
+            <List title="硬核狠人" :list="personInfo"></List>
+
+          </a-col>
+
+          <a-col :span="7" justify="space-around" align="middle" class="space-box">
+            <List title="神奇组织" :list="organizationInfo"></List>
+          </a-col>
+        </a-row>
+
+        <template #footer></template>
+      </a-modal>
+
+      <a-modal v-model:open="aboutVisible" :title="activeTitle" centered @ok="aeraInfoVisible = false" width="1080px" >
         <a-row justify="space-around" >
           <a-col :span="7" justify="space-around" align="middle" class="space-box">
             
