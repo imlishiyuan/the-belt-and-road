@@ -55,8 +55,7 @@ const followInfo = {
 const router = useRouter()
 
 function toAbout() {
-  router.push({ name: "about" })
-
+  window.location.href = 'https://yidaiyilu.gov.cn/'
 }
 
 function resize() {
@@ -124,7 +123,7 @@ function clickArea(params: any) {
       <a-modal v-model:open="qrcodeVisible" title="感谢关注" centered @ok="qrcodeVisible = false">
         <a-row :gutter="[16, 24]" justify="space-around" >
           <a-col :span="11" justify="space-around" align="middle" class="space-box">
-            <Card :title="followInfo.liganma.name" :avatar="'image/'+ followInfo.liganma.avatar" :qrcode="followInfo.liganma.space" :sign="followInfo.liganma.sign"></Card>
+            <Card :title="followInfo.liganma.name" :avatar="followInfo.liganma.avatar" :qrcode="followInfo.liganma.space" :sign="followInfo.liganma.sign"></Card>
 
           </a-col>
         </a-row>
@@ -151,7 +150,7 @@ function clickArea(params: any) {
                   </a-button>
                 </a-tooltip>
               </a-input-group>
-              <a-qrcode error-level="H" :value="href" icon="favicon.ico" />
+              <a-qrcode error-level="H" :value="href" icon="logo.png" />
             </a-space>
 
           </a-col>
@@ -160,61 +159,7 @@ function clickArea(params: any) {
         <template #footer></template>
       </a-modal>
 
-      <a-modal v-model:open="aeraInfoVisible" :title="activeTitle" centered @ok="aeraInfoVisible = false" width="1080px" >
-        <a-row justify="space-around" >
-          <a-col :span="7" justify="space-around" align="middle" class="space-box">
-            
-            <List title="奇葩小国" :list="countryInfo"></List>
-
-          </a-col>
-
-          <a-col :span="7" justify="space-around" align="middle" class="space-box">
-            
-            <List title="硬核狠人" :list="personInfo"></List>
-
-          </a-col>
-
-          <a-col :span="7" justify="space-around" align="middle" class="space-box">
-            <List title="神奇组织" :list="organizationInfo"></List>
-          </a-col>
-        </a-row>
-
-        <template #footer></template>
-      </a-modal>
-
-      <a-modal v-model:open="aboutVisible" :title="activeTitle" centered @ok="aeraInfoVisible = false" width="1080px" >
-        <a-row justify="space-around" >
-          <a-col :span="7" justify="space-around" align="middle" class="space-box">
-            
-            <List title="奇葩小国" :list="countryInfo"></List>
-
-          </a-col>
-
-          <a-col :span="7" justify="space-around" align="middle" class="space-box">
-            
-            <List title="硬核狠人" :list="personInfo"></List>
-
-          </a-col>
-
-          <a-col :span="7" justify="space-around" align="middle" class="space-box">
-            <List title="神奇组织" :list="organizationInfo"></List>
-          </a-col>
-        </a-row>
-
-        <template #footer></template>
-      </a-modal>
-
-      <a-modal v-model:open="unitInfoVisible" title="单位信息" centered @ok="unitInfoVisible = false" >
-        <a-row justify="space-around" >
-          <a-col :span="24" justify="space-around" align="middle">
-            
-            <Card :title="activeUnit?.title" :sign="activeUnit?.sign" ></Card>
-
-          </a-col>
-        </a-row>
-
-        <template #footer></template>
-      </a-modal>
+    
     </div>
   </div>
 </template>
