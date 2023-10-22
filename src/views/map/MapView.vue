@@ -119,7 +119,7 @@ onMounted(() => {
                 selectedMode: false,
                 map: 'world',
                 label: {
-                    color: "#FFF",
+                    color: "#FFF"
                 },
                 itemStyle: {
                     areaColor: "#eeb8c3",
