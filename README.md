@@ -42,20 +42,10 @@ npm run build-only
 
 ### Build docker image
 ```
-docker build -t tongliao-universe .
+docker build -t the-belt-and-road .
 ```
 
 ### run docker 
 ```shell
-docker run -p 8080:80 --name tongliao-universe -d tongliao-universe
+docker run -p 8080:80 --name the-belt-and-road -d the-belt-and-road
 ```
-
-## 本站技术分析
-
-总的来说，项目包括数据获取与数据展示部分。其中工作量主要在界面绘制与数据整理。
-
-### 界面部分
-界面使用echarts + vue  + antdv处理。echarts主要用来处理大地图展示地图geo数据，antdv提供界面组件。地图展示有我们自己标注的数据需要手动渲染处理一下。
-
-### 数据部分
-数据包括两个，一是up主小约翰可汗的视频数据与up信息数据的爬取与整理，二是世界地图数据的获取与整理。视频信息与up可以通过接口爬取，这里使用了python写了一个爬虫工具将数据存在json文件了，但是直接获取到的数据是不能直接使用的，需要识别出视频内容讲的是什么人什么国家什么组织，有的视频会在视频简介中写明，有些则没有，一个通用的方式是，提取视频语音转成文字后交给AI提取主题，但是这个硬件要求太高了，我这个办公本显然不能胜任，最后还是选择手动补全。地图数据网上是可以找到的，但是通辽、回龙观与天通苑是需要自己手动标注的，于是自己标了一下，非专业人士，所以不太美观。
